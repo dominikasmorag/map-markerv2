@@ -1,7 +1,6 @@
 package com.dominika.springbootapp.service;
 
 import com.dominika.springbootapp.entity.Place;
-import com.dominika.springbootapp.pojo.User;
 import com.dominika.springbootapp.repository.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
