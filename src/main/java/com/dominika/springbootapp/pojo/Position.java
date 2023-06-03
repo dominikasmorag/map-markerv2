@@ -15,5 +15,11 @@ public class Position {
         this.lon = lon;
     }
 
-
+    @Override
+    public String toString() {
+        return "Position{" +
+                "lat=" + lat +
+                ", lon=" + lon +
+                '}';
+    }
 }
