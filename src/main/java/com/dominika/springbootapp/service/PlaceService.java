@@ -20,4 +20,8 @@ public class PlaceService {
         return repository.findAll();
     }
 
+    public void savePlace(Place place) {
+        repository.save(place);
+    }
+
 }

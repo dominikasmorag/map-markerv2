@@ -9,7 +9,7 @@ public class Place {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "place_id")
+    @Column(name = "id")
     //IDENTITY generation disables batch updates.
     private Long id;
     @Column(name = "name")
@@ -20,22 +20,19 @@ public class Place {
     @Embedded
     @Column(name = "position")
     private Position position;
-    private boolean isShared;
 
-
-    public Place(Long id, String name, String description, Position position, boolean isShared) {
+    public Place(Long id, String name, String description, Position position) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.position = position;
-        this.isShared = isShared;
     }
 
-    public Place(String name, String description, Position position, boolean isShared) {
+    public Place(String name, String description, Position position) {
         this.name = name;
         this.description = description;
         this.position = position;
-        this.isShared = isShared;
+
     }
 
     public Place() {
@@ -73,11 +70,13 @@ public class Place {
         this.position = position;
     }
 
-    public boolean isShared() {
-        return isShared;
-    }
-
-    public void setShared(boolean shared) {
-        isShared = shared;
+    @Override
+    public String toString() {
+        return "Place{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", position=" + position.toString() +
+                '}';
     }
 }
