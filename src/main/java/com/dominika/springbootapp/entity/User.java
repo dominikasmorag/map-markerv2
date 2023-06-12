@@ -1,8 +1,6 @@
 package com.dominika.springbootapp.entity;
 
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,25 +16,15 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = {@JoinColumn(name = "userId", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
-    )
-    private List<Role> roles = new ArrayList<>();
-
-    public User(Long id, String username, String password, List<Role> roles) {
+    public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
     public User(String username, String password, List<Role> roles) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
     public User() {
@@ -66,12 +54,4 @@ public class User {
         this.password = password;
     }
 
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRole(List<Role> roles) {
-        this.roles = roles;
-    }
 }
