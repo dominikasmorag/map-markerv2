@@ -4,13 +4,13 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Position {
-    private double lat;
-    private double lon;
+    private String lat;
+    private String lon;
 
     public Position() {
     }
 
-    public Position(double lat, double lon) {
+    public Position(String lat, String lon) {
         this.lat = lat;
         this.lon = lon;
     }
@@ -21,5 +21,21 @@ public class Position {
                 "lat=" + lat +
                 ", lon=" + lon +
                 '}';
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }
