@@ -10,9 +10,8 @@ public class UserPlace {
 
     private boolean shared;
 
-    public UserPlace(User user, Place place, boolean shared) {
+    public UserPlace(User user, Place place) {
         this.userPlacesKey = new UserPlacesKey(user.getId(), place.getId());
-        this.shared = shared;
     }
 
     public UserPlace(){}

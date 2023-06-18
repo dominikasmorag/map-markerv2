@@ -21,18 +21,21 @@ public class Place {
     @Column(name = "position")
     private Position position;
 
-    public Place(Long id, String name, String description, Position position) {
+    private boolean shared;
+
+    public Place(Long id, String name, String description, Position position, boolean shared) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.position = position;
+        this.shared = shared;
     }
 
-    public Place(String name, String description, Position position) {
+    public Place(String name, String description, Position position, boolean shared) {
         this.name = name;
         this.description = description;
         this.position = position;
-
+        this.shared = shared;
     }
 
     public Place() {
@@ -70,13 +73,18 @@ public class Place {
         this.position = position;
     }
 
+    public boolean isShared() { return shared; }
+
+    public void setShared(boolean shared) { this.shared = shared; }
+
     @Override
     public String toString() {
         return "Place{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", position=" + position.toString() +
+                ", position=" + position.toString() + '\'' +
+                ", shared=" + shared + '\'' +
                 '}';
     }
 }
