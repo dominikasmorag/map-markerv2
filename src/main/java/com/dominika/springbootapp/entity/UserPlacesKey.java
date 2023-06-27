@@ -8,6 +8,8 @@ public class UserPlacesKey {
     private Long userId;
     private Long placeId;
 
+    public UserPlacesKey() {}
+
     public Long getUserId() {
         return userId;
     }
