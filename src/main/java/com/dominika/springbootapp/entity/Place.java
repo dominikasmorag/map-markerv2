@@ -21,6 +21,7 @@ public class Place {
     @Column(name = "position")
     private Position position;
 
+    @Column(name = "shared")
     private boolean shared;
 
     public Place(Long id, String name, String description, Position position, boolean shared) {
