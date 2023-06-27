@@ -25,11 +25,12 @@ public class PlaceController {
 
     @PostMapping("/savePlace")
     public void saveLocation(@RequestBody Position position) {
-        System.out.println("PlaceController.saveLocation");
+
         System.out.println("position = " + position);
         Place place = new Place();
         place.setName("test name");
         place.setDescription("test description");
+        place.setShared(true);
         place.setPosition(position);
 
         placeService.savePlace(place);
