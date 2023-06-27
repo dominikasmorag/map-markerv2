@@ -1,6 +1,5 @@
 package com.dominika.springbootapp.service;
 
-import com.dominika.springbootapp.controller.SecurityController;
 import com.dominika.springbootapp.entity.Place;
 import com.dominika.springbootapp.entity.User;
 import com.dominika.springbootapp.repository.PlaceRepository;
@@ -14,8 +13,6 @@ public class PlaceService {
     PlaceRepository placeRepository;
     UserService userService;
     UserPlaceService userPlaceService;
-    @Autowired
-    SecurityController securityController;
 
     @Autowired
     public PlaceService(PlaceRepository placeRepository, UserService userService, UserPlaceService userPlaceService) {
