@@ -18,20 +18,37 @@ const saveButton = document.getElementById("saveButton");
 saveButton.addEventListener("click", () => {
   const lat = marker.getLatLng().lat.toFixed(6);
   const lon = marker.getLatLng().lng.toFixed(6);
+  const placeName = document.getElementById("locationName").value;
+  const placeDescription = document.getElementById("locationDescription").value;
+  const checkbox = document.getElementById("shared");
+  const shared = checkbox.checked;
+  console.log("SHARED OR NOT SHARED? " + shared)
   L.marker([lat, lon]).addTo(map);
 
-  const position = {
-    lat: lat,
-    lon: lon
-  };
-    console.log(`position.json = ${JSON.stringify(position)}`);
+//  const place = {
+//    lat: lat,
+//    lon: lon
+//  };
+
+   const place = {
+       name: placeName,
+       description: placeDescription,
+       position: {
+       lat: lat,
+       lon: lon
+       },
+       shared: shared
+   };
+
+//  String name, String description, Position position, boolean shared
+    console.log(`place.json = ${JSON.stringify(place)}`);
   fetch('/api/v1/savePlace', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'X-XSRF-TOKEN': '',
     },
-    body: JSON.stringify(position)
+    body: JSON.stringify(place)
   })
   .then(response => {
   console.log('response', response)
