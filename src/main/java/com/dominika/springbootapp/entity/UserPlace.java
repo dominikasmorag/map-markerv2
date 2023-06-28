@@ -15,5 +15,10 @@ public class UserPlace {
 
     public UserPlace(){}
 
-
+    @Override
+    public String toString() {
+        return "UserPlace{" +
+                "userPlacesKey=" + userPlacesKey +
+                '}';
+    }
 }

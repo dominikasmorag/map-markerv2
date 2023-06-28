@@ -30,4 +30,12 @@ public class UserPlacesKey {
         this.userId = userId;
         this.placeId = placeId;
     }
+
+    @Override
+    public String toString() {
+        return "UserPlacesKey{" +
+                "userId=" + userId +
+                ", placeId=" + placeId +
+                '}';
+    }
 }
