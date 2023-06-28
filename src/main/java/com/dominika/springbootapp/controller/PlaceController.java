@@ -1,8 +1,9 @@
 package com.dominika.springbootapp.controller;
 
 import com.dominika.springbootapp.entity.Place;
-import com.dominika.springbootapp.pojo.Position;
+import com.dominika.springbootapp.entity.UserPlace;
 import com.dominika.springbootapp.service.PlaceService;
+import com.dominika.springbootapp.service.UserPlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +13,12 @@ import java.util.List;
 @RequestMapping(path="/api/v1")
 public class PlaceController {
     private final PlaceService placeService;
+    private final UserPlaceService userPlaceService;
 
     @Autowired
-    public PlaceController(PlaceService placeService) {
+    public PlaceController(PlaceService placeService, UserPlaceService userPlaceService) {
         this.placeService = placeService;
+        this.userPlaceService = userPlaceService;
     }
 
     @GetMapping("/places")
@@ -23,16 +26,12 @@ public class PlaceController {
         return placeService.getPlaces();
     }
 
+    @GetMapping("/places/{id}")
+    @ResponseBody
+    public List<UserPlace> getUserPlaces(@PathVariable(value="id") Long userId) { return userPlaceService.findUserPlaces(userId);}
+
     @PostMapping("/savePlace")
-    public void saveLocation(@RequestBody Position position) {
-
-        System.out.println("position = " + position);
-        Place place = new Place();
-        place.setName("test name");
-        place.setDescription("test description");
-        place.setShared(true);
-        place.setPosition(position);
-
+    public void saveLocation(@RequestBody Place place) {
         placeService.savePlace(place);
     }
 
