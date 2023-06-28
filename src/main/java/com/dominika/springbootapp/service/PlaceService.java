@@ -2,6 +2,7 @@ package com.dominika.springbootapp.service;
 
 import com.dominika.springbootapp.entity.Place;
 import com.dominika.springbootapp.entity.User;
+import com.dominika.springbootapp.entity.UserPlace;
 import com.dominika.springbootapp.repository.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class PlaceService {
     public List<Place> getPlaces() {
         return placeRepository.findAll();
     }
+
+    public List<UserPlace> getUserPlaces(Long userId) { return userPlaceService.findUserPlaces(userId);}
 
     public void savePlace(Place place) {
         Place newPlace = placeRepository.save(place);
