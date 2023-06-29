@@ -6,11 +6,32 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var marker = L.marker([51.521562, -0.304184]).addTo(map);
 
+var userId;
+
+fetch('/api/v1/user/current')
+.then(function(response) {
+    if(!response.ok) {
+    throw new Error('Network response error');
+    console.log('Network response error while getting /api/v1/user/current');
+    }
+    return response.json();
+    })
+    .then(function(data) {
+    userId = data;
+
+    })
+    .catch(function(error) {
+    console.log('Error: ', error);
+    });
+
+
 function onMapClick(e) {
   var latlng = e.latlng;
   marker.setLatLng(latlng);
   marker.bindPopup("Coordinates: " + latlng.lat.toFixed(6) + ", " + latlng.lng.toFixed(6)).openPopup();
 }
+
+const currentUserId =
 
 map.on('click', onMapClick);
 
@@ -22,13 +43,7 @@ saveButton.addEventListener("click", () => {
   const placeDescription = document.getElementById("locationDescription").value;
   const checkbox = document.getElementById("shared");
   const shared = checkbox.checked;
-  console.log("SHARED OR NOT SHARED? " + shared)
   L.marker([lat, lon]).addTo(map);
-
-//  const place = {
-//    lat: lat,
-//    lon: lon
-//  };
 
    const place = {
        name: placeName,
@@ -40,6 +55,27 @@ saveButton.addEventListener("click", () => {
        shared: shared
    };
 
+console.log(userId);
+
+
+//fetch all places owned by the current user
+fetch('/api/v1/places/' + userId)
+.then(function(response) {
+if(!response.ok) {
+throw new Error('Network response error in /api/v1/places/{id} fetch method');
+}
+return response.json();
+})
+.then(function(data) {
+var userPlaces = data;
+
+userPlaces.forEach(function(place) {
+    console.log(place.name);
+});
+})
+.catch(function(error) {
+console.log('Error:', error);
+});
 //  String name, String description, Position position, boolean shared
     console.log(`place.json = ${JSON.stringify(place)}`);
   fetch('/api/v1/savePlace', {
