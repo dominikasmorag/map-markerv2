@@ -15,6 +15,14 @@ public class UserPlace {
 
     public UserPlace(){}
 
+    public UserPlacesKey getUserPlacesKey() {
+        return userPlacesKey;
+    }
+
+    public void setUserPlacesKey(UserPlacesKey userPlacesKey) {
+        this.userPlacesKey = userPlacesKey;
+    }
+
     @Override
     public String toString() {
         return "UserPlace{" +
