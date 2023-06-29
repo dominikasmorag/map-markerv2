@@ -23,6 +23,9 @@ public class UserService {
         return repository.findAll();
     }
 
+    public Long currentUserId() {
+        return currentUser().getId();
+    }
     public User currentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
