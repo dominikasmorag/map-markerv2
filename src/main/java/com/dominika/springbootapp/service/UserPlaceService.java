@@ -3,23 +3,38 @@ package com.dominika.springbootapp.service;
 import com.dominika.springbootapp.entity.Place;
 import com.dominika.springbootapp.entity.User;
 import com.dominika.springbootapp.entity.UserPlace;
+import com.dominika.springbootapp.repository.PlaceRepository;
 import com.dominika.springbootapp.repository.UserPlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class UserPlaceService {
-    UserPlaceRepository repository;
+    PlaceRepository placeRepository;
+    UserPlaceRepository userPlaceRepository;
 
     @Autowired
-    public UserPlaceService(UserPlaceRepository repository) {
-        this.repository = repository;
+    public UserPlaceService(UserPlaceRepository userPlaceRepository, PlaceRepository placeRepository) {
+        this.userPlaceRepository = userPlaceRepository;
+        this.placeRepository = placeRepository;
     }
 
-    public List<UserPlace> findUserPlaces(Long userId) { return repository.findUserPlaces(userId); }
+    public List<Place> findUserPlaces(Long userId) {
+        List<UserPlace> userPlaces = userPlaceRepository.findUserPlaces(userId);
+        List<Long> ids = new LinkedList<>();
+        for(UserPlace up : userPlaces) {
+            ids.add(up.getUserPlacesKey().getPlaceId());
+        }
+        List<Place> places = new LinkedList<>();
+        for(UserPlace up : userPlaces) {
+            places = placeRepository.findAllById(ids);
+        }
+        return places;
+    }
     public void saveUserPlace(User user, Place place) {
-        repository.save(new UserPlace(user, place));
+        userPlaceRepository.save(new UserPlace(user, place));
     }
 }
