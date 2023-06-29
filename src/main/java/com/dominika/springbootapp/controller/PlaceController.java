@@ -1,7 +1,6 @@
 package com.dominika.springbootapp.controller;
 
 import com.dominika.springbootapp.entity.Place;
-import com.dominika.springbootapp.entity.UserPlace;
 import com.dominika.springbootapp.service.PlaceService;
 import com.dominika.springbootapp.service.UserPlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,13 @@ public class PlaceController {
 
     @GetMapping("/places/{id}")
     @ResponseBody
-    public List<UserPlace> getUserPlaces(@PathVariable(value="id") Long userId) { return userPlaceService.findUserPlaces(userId);}
+    public List<Place> getUserPlaces(@PathVariable(value="id") Long userId) { return userPlaceService.findUserPlaces(userId);}
 
+    //this method is not finished yet in javascript
+    @GetMapping("/places/shared")
+    @ResponseBody
+    public List<Place> getSharedPlaces() { return placeService.findSharedPlaces();
+    }
     @PostMapping("/savePlace")
     public void saveLocation(@RequestBody Place place) {
         placeService.savePlace(place);
