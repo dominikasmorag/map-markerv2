@@ -14,4 +14,7 @@ public interface UserPlaceRepository extends JpaRepository<UserPlace, UserPlaces
 
     @Query("SELECT up FROM UserPlace up WHERE up.userPlacesKey.userId = :userId")
     List<UserPlace> findUserPlaces(@Param("userId") Long userId);
+
+    @Query("SELECT COUNT(*) FROM UserPlace up WHERE up.userPlacesKey.userId = :userId")
+    int countUserPlaces(@Param("userId") Long userId);
 }

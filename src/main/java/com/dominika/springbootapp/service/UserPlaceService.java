@@ -37,4 +37,13 @@ public class UserPlaceService {
     public void saveUserPlace(User user, Place place) {
         userPlaceRepository.save(new UserPlace(user, place));
     }
+
+    public int countUserPlaces(User user) {
+        return userPlaceRepository.countUserPlaces(user.getId());
+    }
+
+    public int countSharedPlaces() {
+        return placeRepository.countSharedPlaces();
+    }
+
 }

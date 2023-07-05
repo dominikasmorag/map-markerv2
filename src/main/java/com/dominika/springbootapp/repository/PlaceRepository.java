@@ -12,4 +12,7 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 
     @Query("SELECT p FROM Place p WHERE p.shared=true")
     List<Place> findSharedPlaces();
+
+    @Query("SELECT COUNT(*) FROM Place p WHERE p.shared=true")
+    int countSharedPlaces();
 }
