@@ -31,8 +31,6 @@ function onMapClick(e) {
   marker.bindPopup("Coordinates: " + latlng.lat.toFixed(6) + ", " + latlng.lng.toFixed(6)).openPopup();
 }
 
-const currentUserId =
-
 map.on('click', onMapClick);
 
 const saveButton = document.getElementById("saveButton");
@@ -57,25 +55,27 @@ saveButton.addEventListener("click", () => {
 
 console.log(userId);
 
+fetch('/api/v1/places/myPlaces')
+    .then(response => response.json())
+    .then(data => {
+    const userPlaces = JSON.stringify(data);
+    console.log(userPlaces);
+    const userPlacesArr = JSON.parse(userPlaces);
+    console.log(userPlacesArr);
+    userPlacesArr.forEach(addToMap)
+    })
+    .catch(error => {
+    console.error('Error while trying to fetch /api/v1/places/myPlaces');
+    });
 
-//fetch all places owned by the current user
-fetch('/api/v1/places/' + userId)
-.then(function(response) {
-if(!response.ok) {
-throw new Error('Network response error in /api/v1/places/{id} fetch method');
-}
-return response.json();
-})
-.then(function(data) {
-var userPlaces = data;
+    function addToMap(userPlace) {
+    const latt = userPlace.position.lat;
+    const lonn = userPlace.position.lon;
 
-userPlaces.forEach(function(place) {
-    console.log(place.name);
-});
-})
-.catch(function(error) {
-console.log('Error:', error);
-});
+    L.marker([parseFloat(latt), parseFloat(lonn)]).addTo(map);
+
+    }
+
 //  String name, String description, Position position, boolean shared
     console.log(`place.json = ${JSON.stringify(place)}`);
   fetch('/api/v1/savePlace', {
