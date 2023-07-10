@@ -24,19 +24,24 @@ public class Place {
     @Column(name = "shared")
     private boolean shared;
 
-    public Place(Long id, String name, String description, Position position, boolean shared) {
+    @Column(name = "icon_path")
+    private String iconPath;
+
+    public Place(Long id, String name, String description, Position position, boolean shared, String iconPath) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.position = position;
         this.shared = shared;
+        this.iconPath = iconPath;
     }
 
-    public Place(String name, String description, Position position, boolean shared) {
+    public Place(String name, String description, Position position, boolean shared, String iconPath) {
         this.name = name;
         this.description = description;
         this.position = position;
         this.shared = shared;
+        this.iconPath = iconPath;
     }
 
     public Place() {
@@ -78,14 +83,23 @@ public class Place {
 
     public void setShared(boolean shared) { this.shared = shared; }
 
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
     @Override
     public String toString() {
         return "Place{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", position=" + position.toString() + '\'' +
-                ", shared=" + shared + '\'' +
+                ", position=" + position +
+                ", shared=" + shared +
+                ", iconPath='" + iconPath + '\'' +
                 '}';
     }
 }
