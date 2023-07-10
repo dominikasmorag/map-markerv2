@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
     <style>
     #map {
       height: 400px;
@@ -17,6 +18,22 @@
     <input type="text" id="locationDescription" name ="locationDescription"> <br />
     <label for="shared">Share to other people:</label> <br />
     <input type="checkbox" id="shared" name="shared" value="share">
+    <fieldset id="fieldset">
+        <p>Select the icon for marker: </p>
+        <input type="checkbox" id="gasolineIcon" name="gasolineIcon">
+        <label for="gasolineIcon"> <img src="leaflet-icons/gasoline-pump.png" width="2%" height="2%" alt="gasoline pump"></label>
+        <input type="checkbox" id="heartIcon" name="heartIcon">
+        <label for="heartIcon"> <img src="leaflet-icons/heart.png" width="2%" height="2%" alt="heart"></label>
+        <input type="checkbox" id="museumIcon" name="museumIcon">
+        <label for="museumIcon"> <img src="leaflet-icons/museum.png" width="2%" height="2%" alt="museum"></label>
+        <input type="checkbox" id="parkingIcon" name="parkingIcon">
+        <label for="parkingIcon"> <img src="leaflet-icons/parking.png" width="2%" height="2%" alt="parking"></label>
+        <input type="checkbox" id="restaurantIcon" name="restaurantIcon">
+        <label for="restaurantIcon"> <img src="leaflet-icons/restaurant.png" width="2%" height="2%" alt="restaurant"></label>
+        <input type="checkbox" id="shoppingCartIcon" name="shoppingCartIcon">
+        <label for="shoppingCartIcon"> <img src="leaflet-icons/shopping-cart.png" width="2%" height="2%" alt="shopping-cart"></label>
+
+    </fieldset>
 </form>
 <button id="saveButton">Save Location</button>
 

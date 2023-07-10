@@ -4,7 +4,48 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var marker = L.marker([51.521562, -0.304184]).addTo(map);
+var LeafIcon = L.Icon.extend({
+    options: {
+    iconSize: [38, 40],
+    iconAnchor: [22, 40],
+    shadowAnchor: [4, 42],
+    popupAnchor: [-3, -76]
+    }
+});
+
+var gasolineIcon = new LeafIcon({
+    iconUrl: 'leaflet-icons/gasoline-pump.png'
+    });
+
+var heartIcon = new LeafIcon({
+    iconUrl: 'leaflet-icons/heart.png'
+    });
+
+var museumIcon = new LeafIcon({
+    iconUrl: 'leaflet-icons/museum.png'
+    });
+
+var parkingIcon = new LeafIcon({
+    iconUrl: 'leaflet-icons/parking.png'
+    });
+
+var restaurantIcon = new LeafIcon({
+    iconUrl: 'leaflet-icons/restaurant.png'
+    });
+
+var shoppingCartIcon = new LeafIcon({
+    iconUrl: 'leaflet-icons/shopping-cart.png'
+    });
+
+var icons = [];
+icons.push(gasolineIcon, heartIcon, museumIcon, parkingIcon, restaurantIcon, shoppingCartIcon);
+console.log('DUPAAAAAAAAAAAAAAAAA@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@' + JSON.stringify(icons));
+
+//undefined
+var nanana = icons.find(ic => ic.iconUrl === 'leaflet-icons/shopping-cart.png')
+console.log(nanana);
+
+var marker = L.marker([51.521562, -0.304184], {icon: gasolineIcon}).addTo(map);
 
 var userId;
 
@@ -41,7 +82,7 @@ saveButton.addEventListener("click", () => {
   const placeDescription = document.getElementById("locationDescription").value;
   const checkbox = document.getElementById("shared");
   const shared = checkbox.checked;
-  L.marker([lat, lon]).addTo(map);
+  L.marker([lat, lon], {icon: gasolineIcon}).addTo(map);
 
    const place = {
        name: placeName,
