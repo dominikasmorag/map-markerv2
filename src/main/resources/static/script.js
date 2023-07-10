@@ -39,7 +39,7 @@ var shoppingCartIcon = new LeafIcon({
 
 var icons = [];
 icons.push(gasolineIcon, heartIcon, museumIcon, parkingIcon, restaurantIcon, shoppingCartIcon);
-console.log('DUPAAAAAAAAAAAAAAAAA@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@' + JSON.stringify(icons));
+console.log('Icons: ' + JSON.stringify(icons));
 
 //undefined
 var nanana = icons.find(ic => ic.iconUrl === 'leaflet-icons/shopping-cart.png')
